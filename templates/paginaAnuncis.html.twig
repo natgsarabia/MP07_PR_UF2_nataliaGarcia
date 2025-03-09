@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel=stylesheet href="../public/styleAnuncis.css">
+{% endblock %} 
+{% block title %}Anuncis {% endblock%}
+{% block navbar %}
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        {% if rol == 'Administrador' %}
+            <a href="../views/paginaAdmin.php" class="navbar-brand">GESTIÓ<b>Informació</b></a>  
+        {% endif %}  
+        {% if rol == 'Usuari' %}
+            <a href="" class="navbar-brand">GESTIÓ<b>Informació</b></a>  
+        {% endif %}  
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span> 
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="nav-item dropdown">
+                {% if rol == 'Administrador' %}
+                    <a data-toggle="dropdown" class="nav-item nav-link dropdown-toggle">Afeguir registres</a>
+                    <div class="dropdown-menu">			
+                        <a href="../views/paginaAfegirUsuari.php" class="dropdown-item">Crear nou usuari</a>
+                        <a href="../views/paginaAfegirAnunci.php" class="dropdown-item">Crear nou anunci</a>
+                    </div>
+                {% endif %}  
+            </div>   
+            <a href="../views/paginaAnuncis.php" class="nav-item nav-link active">Anuncis</a>
+            <div class="navbar-nav action-buttons ml-auto">
+                <a href="../controllers/logoutUser.php" class="btn btn-primary">Tancar sessió</a>
+            </div>
+        </div>
+    </nav>
+{% endblock%}
+{% block content %}
+<main>
+    <h1>Anuncis</h1>
+
+    <div class="carousel">
+        <button class="arrow left">&#10094;</button>
+        <div class="carousel-container">
+            {% for anunci in anuncis %}
+            <div class="card-container">
+                <div class="card">
+                    <img src="{{ anunci.imgProducte }}" alt="{{ anunci.nom }}">
+                    <div class="card-content">
+                        <h2>{{ anunci.nom }}</h2>
+                        <p><strong>CATEGORIA:</strong> {{ anunci.categoria }}</p>
+                        <p><strong>PREU:</strong> {{ anunci.preu }}</p>
+                        <p>{{ anunci.descripcio }}</p>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+                <div class="card-container">
+                    <div class="card">
+                        <p>No hi han anuncis disponibles</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <button class="arrow right">&#10095;</button>
+    </div>
+</main>
+    <div class="footer">
+        Proyecte Final UF2 MP07 <strong>Natalia García</strong> 
+    </div>
+{% endblock %}

@@ -1,0 +1,52 @@
+[
+    {
+        "id": "1",
+        "nom": "Iphone 13",
+        "descripcio": "Tel\u00e9fono m\u00f3vil Apple iPhone 13 Pro, 256 GB color grafito en perfecto estado con caja y accesorios originales.",
+        "preu": "850",
+        "categoria": "Electr\u00f3nica",
+        "imgProducte": "https:\/\/r-on.iservices.com\/img\/p\/1\/1\/6\/9\/6\/11696.jpg",
+        "id_usuari": "2",
+        "data_registre": "01-03-25"
+    },
+    {
+        "id": "2",
+        "nom": "Sofa",
+        "descripcio": "Sof\u00e1 de piel color beige c\u00f3modo y elegante con asientos reclinables. Medidas: 2,10 m de largo.",
+        "preu": "450",
+        "categoria": "Hogar",
+        "imgProducte": "https:\/\/tuttoconfortmurcia.com\/wp-content\/uploads\/2016\/12\/toscana1.jpg",
+        "id_usuari": "2",
+        "data_registre": "01-03-25"
+    },
+    {
+        "id": "3",
+        "nom": "Bicicleta",
+        "descripcio": "Bicicleta de monta\u00f1a Trek Marlin 7 talla M en excelente estado con frenos de disco hidr\u00e1ulicos y suspensi\u00f3n delantera.",
+        "preu": "600",
+        "categoria": "Deporte",
+        "imgProducte": "https:\/\/la-madrilena.es\/wp-content\/uploads\/2021\/10\/Monty_KX8_26-scaled.jpg",
+        "id_usuari": "2",
+        "data_registre": "01-03-25"
+    },
+    {
+        "id": "4",
+        "nom": "Cien a\u00f1os de soledad",
+        "descripcio": "Edici\u00f3n de coleccionista de la obra de Gabriel Garc\u00eda M\u00e1rquez tapa dura y en excelente estado.",
+        "preu": "55",
+        "categoria": "Libros",
+        "imgProducte": "https:\/\/cdn.grupoelcorteingles.es\/SGFM\/dctm\/MEDIA03\/202401\/31\/00106524066989____2__1200x1200.jpg",
+        "id_usuari": "2",
+        "data_registre": "01-03-25"
+    },
+    {
+        "id": "5",
+        "nom": "Nintendo Switch",
+        "descripcio": "Consola Nintendo Switch con dos Joy-Con, cargador y base.",
+        "preu": "350",
+        "categoria": "Videojuegos",
+        "imgProducte": "https:\/\/m.media-amazon.com\/images\/I\/81IQp9uUdRL.jpg",
+        "id_usuari": "2",
+        "data_registre": "01-03-25"
+    }
+]

@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel=stylesheet href="../public/styleRegister.css">
+{% endblock %} 
+{% block title %}Llista de Llibres {% endblock%}
+{% block navbar %}
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a href="../views/paginaAdmin.php" class="navbar-brand">GESTIÓ<b>Informació</b></a>  
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span> 
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="nav-item dropdown">
+                {% if rol == 'Administrador' %}
+                    <a data-toggle="dropdown" class="nav-item nav-link dropdown-toggle">Afeguir registres</a>
+                    <div class="dropdown-menu">			
+                        <a href="../views/paginaAfegirUsuari.php" class="dropdown-item">Crear nou usuari</a>
+                        <a href="../views/paginaAfegirAnunci.php" class="dropdown-item">Crear nou anunci</a>
+                    </div>
+                {% endif %}  
+            </div>   
+            <a href="../views/paginaAnuncis.php" class="nav-item nav-link active">Anuncis</a>
+            <div class="navbar-nav action-buttons ml-auto">
+                <a href="../controllers/logoutUser.php" class="btn btn-primary">Tancar sessió</a>
+            </div>
+        </div>
+    </nav>
+{% endblock%}
+{% block content %}
+        {% if missatge %}
+        <div class="alert alert-success" role="alert">
+            {{ missatge }}
+        </div>
+        {% set missatge = null %}
+    {% endif %}
+    <main>
+        <p class="section">Crear nou usuari:</p>
+        <div class="containerForm">
+            <form method="POST" class="RegisterForm" name="crearNou" action="../views/paginaAfegirUsuari.php">
+                <p>Usuari: <input class="login-input" type="text" name="user" required></p>
+                <p>Correu electrònic: <input class="login-input" type="email" name="mail" required></p>
+                <p>Contrasenya <input class="login-input" type="password" name="password" required></p>
+                <select class="login-input" name="rol" required>
+                    <option value="" disabled selected>Seleccione un rol</option>
+                    <option value="Administrador">Administrador</option>
+                    <option value="Usuari">Usuari</option>
+                </select>
+                <button class="custom-btn btn-5 btn-register" type="submit" name="crearNou"> Registrar nou usuari</button>
+            </form>
+        </div>
+
+    
+        <p class="section">Usuaris:</p>
+        <form id="register-form" >
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>USUARI</th>
+                    <th>MAIL</th>
+                    <th>ROL</th>
+                    <th class="hide"></th>
+                </tr>
+                
+                {% for usuari in usuaris %}    
+                <tr>
+                    <td class="line">{{usuari.id}}</td>
+                    <td class="line">{{usuari.usuari}}</td>
+                    <td class="line">{{usuari.email}}</td>
+                    <td class="line">{{usuari.rol}}</td>
+                    <td class="hide">
+                        <form method="POST"  action="../views/paginaAfegirUsuari.php">
+                            <input type="hidden" name="delete_id" value="{{ usuari.id }}">
+                            <button  class="custom-btn btn-5"type="submit" name="delete">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5">No hi han usuaris disponibles</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </form>
+    </main>
+    <div class="footer">
+       Proyecte Final UF2 MP07 <strong>Natalia García</strong> 
+    </div>
+{% endblock %}

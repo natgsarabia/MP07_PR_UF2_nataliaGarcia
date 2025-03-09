@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel=stylesheet href="../public/styleRegister.css">
+{% endblock %} 
+{% block title %}Llista de Llibres {% endblock%}
+{% block navbar %}
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a href="../views/paginaAdmin.php" class="navbar-brand">GESTIÓ<b>Informació</b></a>  
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span> 
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="nav-item dropdown">
+                {% if rol == 'Administrador' %}
+                    <a data-toggle="dropdown" class="nav-item nav-link dropdown-toggle">Afeguir registres</a>
+                    <div class="dropdown-menu">			
+                        <a href="../views/paginaAfegirUsuari.php" class="dropdown-item">Crear nou usuari</a>
+                        <a href="../views/paginaAfegirAnunci.php" class="dropdown-item">Crear nou anunci</a>
+                    </div>
+                {% endif %}  
+            </div>   
+            <a href="../views/paginaAnuncis.php" class="nav-item nav-link active">Anuncis</a>
+            <div class="navbar-nav action-buttons ml-auto">
+                <a href="../controllers/logoutUser.php" class="btn btn-primary">Tancar sessió</a>
+            </div>
+        </div>
+    </nav>
+{% endblock%}
+{% block content %}
+        {% if missatge %}
+            <div class="alert alert-success" role="alert">
+                {{ missatge }}
+            </div>
+            {% set missatge = null %}
+        {% endif %}
+    <main>
+        
+        <p class="section">Crear un nou anunci:</p>
+        <div class="containerForm">
+            <form method="POST" class="RegisterFormAnunci" name="crearNou" action="../views/paginaAfegirAnunci.php">
+                <div class="form-row">
+                    <p>Nom: <input class="login-input" type="text" name="nom" required></p>
+                    <p>Preu: <input class="login-input" type="number" name="preu" required></p>
+                </div>
+                <div class="form-row">
+                    <p>Categoria: <input class="login-input" type="text" name="categoria" required></p>
+                    <p>Link imatge producte: <input class="login-input" type="url" name="imgProducte" required></p>
+                </div>
+                <p>Descripcio:</p>
+                <textarea class="textarea-input "  name="descripcio" required  rows="3" cols="80" ></textarea>
+                <button class="custom-btn btn-5 btn-register" type="submit" name="crearNou"> Enviar missatge</button>
+            </form>
+        </div>
+
+        <p class="section">Anuncis:</p>
+        <form id="register-form" >
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>NOM</th>
+                    <th>DESCRIPCIO</th>
+                    <th>PREU</th>
+                    <th>CATEGORIA</th>
+                    <th>USUARI</th>
+                    <th>DATA CREACIÓ</th>
+                    <th class="hide"></th>
+                </tr>
+                
+                {% for anunci in anuncis %}    
+                <tr>
+                    <td class="line">{{anunci.id}}</td>
+                    <td class="line">{{anunci.nom}}</td>
+                    <td class="line">{{anunci.descripcio}}</td>
+                    <td class="line">{{anunci.preu}}€</td>
+                    <td class="line">{{anunci.categoria}}</td>
+                    <td class="line">{{anunci.id_usuari}}</td>
+                    <td class="line">{{anunci.data_registre}}</td>
+                    <td class="hide">
+                        <form method="POST" action="../views/paginaAfegirAnunci.php">
+                            <input type="hidden" name="delete_id" value="{{ anunci.id }}">
+                            <button class="custom-btn btn-5" type="submit" name="delete">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="8">No hi han anuncis disponibles</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </form>
+    </main>
+<div class="footer">
+    Proyecte Final UF2 MP07 <strong>Natalia García</strong> 
+</div>
+{% endblock %}
